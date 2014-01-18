@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Pagination usgin Ember js</title>
+        <link rel="stylesheet" href="css/main.css">
+        
+        <script type="text/javascript" src="js/libs/jquery/jquery-1.10.2.js"></script>
+        <script type="text/javascript" src="js/libs/handlebar/handlebars-1.1.2.js"></script>
+        <script type="text/javascript" src="js/libs/ember/ember-1.2.0.js"></script>
+        <script type="text/javascript" src="js/libs/ember/ember-data.js"></script>
+        
+        <script type="text/javascript" src="js/emberApp.js"></script>
+    </head>
+    <body>
+        <script type="text/x-handlebars" data-template-name="application">
+            <div class="wrap">
+                <header>
+                    <div class="logo">
+                        <span class="app_title">Pagination in Ember js</span>
+                    </div>
+                </header>
+                <section>
+                    <div class="view-frame">{{outlet}}</div>
+                </section>
+            </div>
+        </script>
+        <script type="text/x-handlebars" data-template-name="orders">
+            <div class="orderGrid grid drop-shadow">
+                <div class="grid-nav">
+                    <button {{action 'navFirst' on='click'}} {{bindAttr disabled='disableFirst'}}><span> &#171; </span> </button>
+                    <button {{action 'navLeft' on='click'}} {{bindAttr disabled='disableLeft'}}><span> &#8249; </span> </button>
+                    <button class="pageValue"><span>{{currentPage}} / {{ noOfPages}}</span></button>
+                    <button {{action 'navRight' on='click'}} {{bindAttr disabled='disableRight'}}><span> &#8250; </span> </button>
+                    <button {{action 'navLast' on='click'}} {{bindAttr disabled='disableLast'}}><span> &#187; </span> </button>
+                    <button {{action 'showAll' on='click'}} class='showAllBtn'><span>{{showAllCaption}}</span></button>
+                    <div class="gotoPage">
+                        {{input type="number" value=selPage}}
+                        <button {{action 'gotoPage' on='click'}} class='selPage' {{bindAttr disabled='disableGoto'}}>
+                        <span>Goto</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="grid-header">
+                    <div class="grid-tr">
+                        <div class="grid-td c1">OrderID</div>
+                        <div class="grid-td c5">OrderDate</div>
+                        <div class="grid-td c3">CustomerID</div>
+                        <div class="grid-td c5">ShippedDate</div>
+                        <div class="grid-td c4">Freight</div>
+                        <div class="grid-td c5">RequiredDate</div>
+                        <div class="grid-td c5">ShipCity</div>
+                        <div class="grid-td c5">ShipCountry</div>
+                    </div>
+                </div>
+                <div class="grid-body" {{bind-attr class=showAllClass}}>
+                {{#each order in filteredProducts}}
+                    <div class="grid-tr">
+                        <div class="grid-td c1">{{order.OrderID}}</div>
+                        <div class="grid-td c5">{{order.OrderDate}}</div>
+                        <div class="grid-td c3">{{order.CustomerID}}</div>
+                        <div class="grid-td c5">{{order.ShippedDate}}</div>
+                        <div class="grid-td c4">{{order.Freight}}</div>
+                        <div class="grid-td c5">{{order.RequiredDate}}</div>
+                        <div class="grid-td c5">{{order.ShipCity}}</div>
+                        <div class="grid-td c5">{{order.ShipCountry}}</div>
+                    </div>
+                {{/each}}
+                </div>
+            </div>
+        </script>
+    </body>
+</html>
